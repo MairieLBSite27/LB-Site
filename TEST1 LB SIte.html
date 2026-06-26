@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Portail Communal</title>
+
+<style>
+    html, body {
+        margin:0;
+        padding:0;
+        height:100%;
+        background:black;
+        font-family: Arial, sans-serif;
+        overflow:hidden;
+    }
+
+    /* MENU AVEC RONDS */
+    .menu {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        background:#003366;
+        padding:10px 20px;
+        height:120px;
+        position:relative;
+        z-index:100;
+    }
+
+    .menu-left, .menu-right {
+        width:150px;
+        display:flex;
+        justify-content:center;
+    }
+
+    .menu-center {
+        display:flex;
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+        flex:1;
+    }
+
+    .menu button {
+        background:white;
+        border:none;
+        padding:10px 20px;
+        border-radius:20px;
+        cursor:pointer;
+        font-size:16px;
+    }
+    .menu button:hover {
+        background:#ddd;
+    }
+
+    .rond {
+        width:70px;
+        height:70px;
+        border-radius:50%;
+        overflow:hidden;
+        background:white;
+        box-shadow:0 0 10px rgba(0,0,0,0.15);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .rond img {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    /* OVERLAY */
+    .overlay {
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.4);
+        z-index:40;
+    }
+
+    /* CARROUSEL PLEINE HAUTEUR */
+    .carrousel {
+        position:relative;
+        width:100%;
+        height: calc(100vh - 120px - 40px);
+        overflow:hidden;
+        z-index:1;
+    }
+
+    .carrousel-slide {
+        position:absolute;
+        width:100%;
+        height:100%;
+        opacity:0;
+        transition:opacity 1s ease-in-out;
+    }
+
+    .carrousel-slide.active {
+        opacity:1;
+    }
+
+    .carrousel-slide img {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        filter:brightness(70%);
+    }
+
+    .carrousel-texte {
+        position:absolute;
+        bottom:20px;
+        left:20px;
+        color:white;
+        background:rgba(0,0,0,0.5);
+        padding:15px;
+        border-radius:10px;
+        max-width:60%;
+    }
+
+    /* SECTIONS PAR-DESSUS */
+    .section {
+        display:none;
+        position:absolute;
+        top:120px;
+        left:0;
+        width:100%;
+        background:white;
+        padding:20px;
+        box-shadow:0 0 15px rgba(0,0,0,0.25);
+        z-index:50;
+        max-height: calc(100vh - 120px - 40px);
+        overflow-y:auto;
+    }
+
+    /* BANDEAU BFM */
+    .bandeau {
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        height:40px;
+        background:#002244;
+        color:white;
+        padding:10px 0;
+        overflow:hidden;
+        white-space:nowrap;
+        font-size:18px;
+        z-index:200;
+    }
+
+    .bandeau span {
+        display:inline-block;
+        padding-left:100%;
+        animation: défilement 20s linear infinite;
+    }
+
+    @keyframes défilement {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+
+<script>
+function showSection(name) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    document.getElementById(name).style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closeSections() {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    document.getElementById('overlay').style.display = 'none';
+}
+
+let index = 0;
+function nextSlide() {
+    let slides = document.querySelectorAll('.carrousel-slide');
+    slides.forEach(s => s.classList.remove('active'));
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+}
+setInterval(nextSlide, 4000);
+</script>
+
+</head>
+<body>
+
+<div class="menu">
+    <div class="menu-left">
+        <div class="rond"><img src="C:/Users/Benjamin/Desktop/mairie/juin/logo_aclb.png"></div>
+    </div>
+
+    <div class="menu-center">
+<button onclick="showSection('Info École')">Info École</button><button onclick="showSection('Info Mairie')">Info Mairie</button><button onclick="showSection('Associations')">Associations</button><button onclick="showSection('Calendrier des événements')">Calendrier des événements</button><button onclick="showSection('Arrêtés')">Arrêtés</button><button onclick="showSection('Info EPN')">Info EPN</button><button onclick="showSection('Archives')">Archives</button>
+    </div>
+
+    <div class="menu-right">
+        <div class="rond"><img src="C:/Users/Benjamin/Desktop/mairie/juin/mairie_LB.png"></div>
+    </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeSections()"></div>
+
+<!-- CARROUSEL -->
+<div class="carrousel">
+
+    <div class="carrousel-slide active">
+        <img src="C:/Users/Benjamin/Desktop/mairie/juin/mairie_LB.png">
+        <div class="carrousel-texte">
+            <h2>⚠️ Coupure d'eau jeudi 27 juin</h2>
+            <p>Une coupure d'eau aura lieu entre 9h et 12h.</p>
+        </div>
+    </div>
+    
+    <div class="carrousel-slide ">
+        <img src="C:/Users/Benjamin/Desktop/mairie/juin/logo_aclb.png">
+        <div class="carrousel-texte">
+            <h2>🎉 Fête de la musique</h2>
+            <p>Rendez-vous samedi 29 juin sur la place du village.</p>
+        </div>
+    </div>
+    
+    <div class="carrousel-slide ">
+        <img src="C:/Users/Benjamin/Desktop/mairie/juin/mairie_LB.png">
+        <div class="carrousel-texte">
+            <h2>🛠 Travaux rue du Bourg</h2>
+            <p>Travaux du 1er au 5 juillet. Merci de votre compréhension.</p>
+        </div>
+    </div>
+    </div><div id='Info École' class='section'><h2>Info École</h2><p>Horaires, menus, infos importantes...</p></div><div id='Info Mairie' class='section'><h2>Info Mairie</h2><p>Horaires d'ouverture, contacts, démarches...</p></div><div id='Associations' class='section'><h2>Associations</h2><p>Liste des associations de la commune...</p></div><div id='Calendrier des événements' class='section'><h2>Calendrier des événements</h2><p>Événements à venir...</p></div><div id='Arrêtés' class='section'><h2>Arrêtés</h2><p>Derniers arrêtés municipaux...</p></div><div id='Info EPN' class='section'><h2>Info EPN</h2><p>Infos sur l'espace public numérique...</p></div><div id='Archives' class='section'><h2>Archives</h2><p>Anciennes actualités, anciens arrêtés...</p></div>
+<div class="bandeau">
+    <span>⚠️ Coupure d'eau jeudi 27 juin — 🎉 Fête de la musique samedi 29 juin — 🛠 Travaux rue du Bourg du 1er au 5 juillet</span>
+</div>
+
+</body>
+</html>
