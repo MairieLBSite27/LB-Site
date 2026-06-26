@@ -15,12 +15,12 @@
         overflow:hidden;
     }
 
-    /* MENU AVEC RONDS */
+    /* MENU VERT */
     .menu {
         display:flex;
         justify-content:space-between;
         align-items:center;
-        background:#003366;
+        background:#2E6E4C;
         padding:10px 20px;
         height:120px;
         position:relative;
@@ -48,9 +48,12 @@
         border-radius:20px;
         cursor:pointer;
         font-size:16px;
+        color:#2E6E4C;
+        font-weight:bold;
     }
     .menu button:hover {
-        background:#ddd;
+        background:#F4C26A;
+        color:black;
     }
 
     .rond {
@@ -71,7 +74,6 @@
         object-fit:cover;
     }
 
-    /* OVERLAY */
     .overlay {
         display:none;
         position:fixed;
@@ -83,7 +85,6 @@
         z-index:40;
     }
 
-    /* CARROUSEL PLEINE HAUTEUR */
     .carrousel {
         position:relative;
         width:100%;
@@ -107,8 +108,8 @@
     .carrousel-slide img {
         width:100%;
         height:100%;
-        object-fit:cover;
-        filter:brightness(70%);
+        object-fit:contain;
+        background:black;
     }
 
     .carrousel-texte {
@@ -122,7 +123,6 @@
         max-width:60%;
     }
 
-    /* SECTIONS PAR-DESSUS */
     .section {
         display:none;
         position:absolute;
@@ -137,20 +137,21 @@
         overflow-y:auto;
     }
 
-    /* BANDEAU BFM */
+    /* BANDEAU DORÉ */
     .bandeau {
         position:fixed;
         bottom:0;
         left:0;
         width:100%;
         height:40px;
-        background:#002244;
-        color:white;
+        background:#F4C26A;
+        color:black;
         padding:10px 0;
         overflow:hidden;
         white-space:nowrap;
         font-size:18px;
         z-index:200;
+        font-weight:bold;
     }
 
     .bandeau span {
@@ -192,7 +193,7 @@ setInterval(nextSlide, 4000);
 
 <div class="menu">
     <div class="menu-left">
-        <div class="rond"><img src="C:/Users/Benjamin/Desktop/mairie/juin/logo_aclb.png"></div>
+        <div class="rond"><img src="logo_aclb.png"></div>
     </div>
 
     <div class="menu-center">
@@ -200,42 +201,40 @@ setInterval(nextSlide, 4000);
     </div>
 
     <div class="menu-right">
-        <div class="rond"><img src="C:/Users/Benjamin/Desktop/mairie/juin/mairie_LB.png"></div>
+        <div class="rond"><img src="mairie_LB.png"></div>
     </div>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeSections()"></div>
 
-<!-- CARROUSEL -->
 <div class="carrousel">
 
     <div class="carrousel-slide active">
-        <img src="C:/Users/Benjamin/Desktop/mairie/juin/mairie_LB.png">
+        <img src="en_travaux_LBS.png">
         <div class="carrousel-texte">
-            <h2>⚠️ Coupure d'eau jeudi 27 juin</h2>
-            <p>Une coupure d'eau aura lieu entre 9h et 12h.</p>
+            <h2>⚠️ Travaux en cours</h2>
+            <p>Des interventions sont en cours dans la commune.</p>
         </div>
     </div>
     
     <div class="carrousel-slide ">
-        <img src="C:/Users/Benjamin/Desktop/mairie/juin/logo_aclb.png">
+        <img src="en_travaux_LBS.png">
         <div class="carrousel-texte">
-            <h2>🎉 Fête de la musique</h2>
-            <p>Rendez-vous samedi 29 juin sur la place du village.</p>
+            <h2>🚧 Chantier municipal</h2>
+            <p>Merci de votre vigilance aux abords des zones de travaux.</p>
         </div>
     </div>
     
     <div class="carrousel-slide ">
-        <img src="C:/Users/Benjamin/Desktop/mairie/juin/mairie_LB.png">
+        <img src="en_travaux_LBS.png">
         <div class="carrousel-texte">
-            <h2>🛠 Travaux rue du Bourg</h2>
-            <p>Travaux du 1er au 5 juillet. Merci de votre compréhension.</p>
+            <h2>🏗 Modernisation en cours</h2>
+            <p>La commune améliore ses infrastructures.</p>
         </div>
     </div>
     </div><div id='Info École' class='section'><h2>Info École</h2><p>Horaires, menus, infos importantes...</p></div><div id='Info Mairie' class='section'><h2>Info Mairie</h2><p>Horaires d'ouverture, contacts, démarches...</p></div><div id='Associations' class='section'><h2>Associations</h2><p>Liste des associations de la commune...</p></div><div id='Calendrier des événements' class='section'><h2>Calendrier des événements</h2><p>Événements à venir...</p></div><div id='Arrêtés' class='section'><h2>Arrêtés</h2><p>Derniers arrêtés municipaux...</p></div><div id='Info EPN' class='section'><h2>Info EPN</h2><p>Infos sur l'espace public numérique...</p></div><div id='Archives' class='section'><h2>Archives</h2><p>Anciennes actualités, anciens arrêtés...</p></div>
 <div class="bandeau">
-    <span>⚠️ Coupure d'eau jeudi 27 juin — 🎉 Fête de la musique samedi 29 juin — 🛠 Travaux rue du Bourg du 1er au 5 juillet</span>
+    <span>⚠️ Travaux en cours dans la commune — 🚧 Chantier municipal : prudence — 🏗 Modernisation des infrastructures</span>
 </div>
-
 </body>
 </html>
